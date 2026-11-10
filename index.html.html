@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roarbots 7592 | FTC Robotics Team</title>
+    <style>
+        /* --- COLOR VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #0b0b0c;
+            --bg-card: #161618;
+            --bg-card-hover: #1f1f23;
+            --orange-primary: #ff6b00;
+            --orange-glow: rgba(255, 107, 0, 0.35);
+            --orange-light: #ff8c38;
+            --text-main: #f4f4f6;
+            --text-muted: #a1a1aa;
+            --border-color: #27272a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: rgba(11, 11, 12, 0.95);
+            border-bottom: 2px solid var(--orange-primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--orange-primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--orange-primary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 5%;
+            background: radial-gradient(circle at center, #261405 0%, var(--bg-dark) 70%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .team-badge {
+            background-color: rgba(255, 107, 0, 0.15);
+            color: var(--orange-primary);
+            border: 1px solid var(--orange-primary);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6.5vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: var(--orange-primary);
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--orange-primary);
+            color: #000;
+            box-shadow: 0 4px 20px var(--orange-glow);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--orange-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--orange-primary);
+            color: var(--orange-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--orange-primary);
+            color: #000;
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title .underline {
+            height: 4px;
+            width: 70px;
+            background-color: var(--orange-primary);
+            margin: 0.75rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- CARDS & GRID --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--orange-primary);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: var(--bg-card-hover);
+        }
+
+        .card h3 {
+            color: var(--orange-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- ROBOT SPECS --- */
+        .robot-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .robot-placeholder {
+            background: repeating-linear-gradient(
+                45deg,
+                #18181b,
+                #18181b 15px,
+                #22150c 15px,
+                #22150c 30px
+            );
+            border: 2px dashed var(--orange-primary);
+            border-radius: 8px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--orange-primary);
+            font-weight: 700;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .spec-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .spec-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .spec-list li span:first-child {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .spec-list li span:last-child {
+            color: var(--orange-primary);
+            font-weight: 700;
+        }
+
+        /* --- CONTACT / FOOTER --- */
+        .cta-banner {
+            background: linear-gradient(135deg, #1f1106 0%, #0b0b0c 100%);
+            border: 1px solid var(--orange-primary);
+            border-radius: 12px;
+            padding: 3.5rem 2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        footer {
+            background-color: #050505;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 2rem 5%;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--orange-primary);
+            font-weight: 700;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+            .robot-showcase {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <a href="#" class="logo">ROARBOTS <span>7592</span></a>
+        <nav>
+            <ul>
+                <li><a href="#about">Subteams</a></li>
+                <li><a href="#robot">Our Robot</a></li>
+                <li><a href="#events">Season</a></li>
+                <li><a href="#sponsor">Sponsor</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="team-badge">FIRST Tech Challenge // Team 7592</div>
+        <h1>We Are <span>Roarbots</span></h1>
+        <p>A FIRST Tech Challenge Robotics team based in Oviedo High School.</p>
+        <div class="btn-group">
+            <a href="#robot" class="btn btn-primary">Explore Our Bot</a>
+            <a href="#sponsor" class="btn btn-outline">Sponsor Team 7592</a>
+        </div>
+    </div>
+
+    <!-- ABOUT / DIVISIONS --> 
+		<section id="about">
+        <div class="section-title">
+            <h2>Our Subteams</h2>
+            <div class="underline"></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 740px; margin: 0 auto;">
+            <div style="background-color: #161618; border: 1px solid #27272a; border-top: 4px solid #ff6b00; border-radius: 0px; padding: 1.5rem; margin: 0; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                <h3 style="color: #ff6b00; margin: 0 0 0.75rem 0; font-size: 1.5rem;">01 // Hardware</h3>
+                <p style="color: #a1a1aa; font-size: 1.15rem; line-height: 1.65; margin: 0;">Building, assembling, and wiring our competition robot—from drivetrain construction and linear slides to intake mechanisms, cable management, and pit repairs.</p>
+            </div>
+            <div style="background-color: #161618; border: 1px solid #27272a; border-top: 4px solid #ff6b00; border-radius: 0px; padding: 1.5rem; margin: 0; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                <h3 style="color: #ff6b00; margin: 0 0 0.75rem 0; font-size: 1.5rem;">02 // CAD &amp; Design</h3>
+                <p style="color: #a1a1aa; font-size: 1.15rem; line-height: 1.65; margin: 0;">Modeling every mechanism in 3D before a single part is cut, running tolerance checks inside the 18" sizing cube, and fabricating custom 3D-printed and CNC parts.</p>
+            </div>
+            <div style="background-color: #161618; border: 1px solid #27272a; border-top: 4px solid #ff6b00; border-radius: 0px; padding: 1.5rem; margin: 0; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                <h3 style="color: #ff6b00; margin: 0 0 0.75rem 0; font-size: 1.5rem;">03 // Software</h3>
+                <p style="color: #a1a1aa; font-size: 1.15rem; line-height: 1.65; margin: 0;">Programming precision autonomous routines with Road Runner/Pedro Pathing, odometry localization, AprilTag computer vision, and TeleOp controls in Java.</p>
+            </div>
+            <div style="background-color: #161618; border: 1px solid #27272a; border-top: 4px solid #ff6b00; border-radius: 0px; padding: 1.5rem; margin: 0; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                <h3 style="color: #ff6b00; margin: 0 0 0.75rem 0; font-size: 1.5rem;">04 // Outreach &amp; Portfolio</h3>
+                <p style="color: #a1a1aa; font-size: 1.15rem; line-height: 1.65; margin: 0;">Documenting our engineering journey for the Inspire Award, connecting with local sponsors, and hosting hands-on STEM workshops for students in our community.</p>
+            </div>
+        </div>
+    </section>
